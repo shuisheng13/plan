@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrankFrame  extends Frame {
-
-    Trank myTank = new Trank(200,200,Dir.UP,this);
     final static  int GAME_WEIGHT = 800;
     final static  int GAME_HEIGHT= 600;
+    Trank myTank = new Trank(200,200,Dir.UP,this);
+    List<Trank> dTranks = new ArrayList<>();
     List<Bullet> list = new ArrayList<>();
     public TrankFrame(){
         setSize(GAME_WEIGHT,GAME_HEIGHT);
@@ -59,6 +59,9 @@ public class TrankFrame  extends Frame {
         myTank.paint(g);
         for (int i = 0; i < list.size(); i++) {
             list.get(i).paint(g);
+        }
+        for (int i = 0; i < dTranks.size(); i++) {
+            dTranks.get(i).paint(g);
         }
 //        有内存泄漏问题
 //        for(Bullet b:list){

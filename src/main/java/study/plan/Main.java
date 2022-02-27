@@ -17,6 +17,10 @@ public class Main
 
         //窗口类
         TrankFrame trankFrame = new TrankFrame();
+
+            for (int i = 0; i < 10; i++) {
+                trankFrame.dTranks.add(new Trank(i*30,i*50,Dir.UP,trankFrame));
+            }
         while (true){
             Thread.sleep(100);
             trankFrame.repaint();

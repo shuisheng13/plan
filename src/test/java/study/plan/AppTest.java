@@ -27,8 +27,7 @@ public class AppTest
     @Test
     public void readImage() throws IOException {
 
-        BufferedImage bf = ImageIO.read(AppTest.class.getClassLoader()
-                .getResourceAsStream("/images/0.gif"));
+        BufferedImage bf = ImageIO.read(AppTest.class.getClassLoader().getResourceAsStream("tankLD.gif"));
 
         assertNotNull(bf);
     }

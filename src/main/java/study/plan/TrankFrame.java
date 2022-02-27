@@ -11,11 +11,11 @@ import java.util.List;
 public class TrankFrame  extends Frame {
 
     Trank myTank = new Trank(200,200,Dir.UP,this);
-    final static  int WEIGHT = 800;
-    final static  int HEIGHT= 600;
+    final static  int GAME_WEIGHT = 800;
+    final static  int GAME_HEIGHT= 600;
     List<Bullet> list = new ArrayList<>();
     public TrankFrame(){
-        setSize(WEIGHT,HEIGHT);
+        setSize(GAME_WEIGHT,GAME_HEIGHT);
         setResizable(false); //控制其不能拖动大小
         setTitle("trank war");
         setVisible(true);
@@ -26,6 +26,22 @@ public class TrankFrame  extends Frame {
                 System.exit(0);
             }
         });
+    }
+
+    Image offScreenImage = null;
+
+    @Override
+    public void update(Graphics g) {
+        if (offScreenImage == null) {
+            offScreenImage = this.createImage(GAME_WEIGHT, GAME_HEIGHT);
+        }
+        Graphics gOffScreen = offScreenImage.getGraphics();
+        Color c = gOffScreen.getColor();
+        gOffScreen.setColor(Color.BLACK);
+        gOffScreen.fillRect(0, 0, GAME_WEIGHT, GAME_HEIGHT);
+        gOffScreen.setColor(c);
+        paint(gOffScreen);
+        g.drawImage(offScreenImage, 0, 0, null);
     }
 
 

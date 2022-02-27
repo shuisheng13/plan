@@ -10,6 +10,9 @@ import java.util.ArrayList;
 public class Trank {
     private int  x ;
     private int y;
+    private int HEIGHT = ResouceMrg.trankL.getHeight();
+    private int WIDTH = ResouceMrg.trankL.getWidth();
+
     private final static  int speed =30;
     private Dir dir = Dir.UP; //默认向下方向
     private boolean moveing = false;
@@ -23,7 +26,16 @@ public class Trank {
     }
 
     public void paint(Graphics g) {
-        g.fillRect(x, y, 50, 50);
+        switch (dir){
+            case LEFT:
+                g.drawImage(ResouceMrg.trankL,x,y,null);
+            case RIGHT:
+                g.drawImage(ResouceMrg.trankR,x,y,null);
+            case UP:
+                g.drawImage(ResouceMrg.trankU,x,y,null);
+            case DOWN:
+                g.drawImage(ResouceMrg.trankD,x,y,null);
+        }
         move();
     }
 
@@ -69,6 +81,8 @@ public class Trank {
      *
      */
     public void fire() {
-        tf.list.add(new Bullet(x,y,this.dir,this.tf));
+        int bx = x +this.HEIGHT/2+ Bullet.HIGHT/2;
+        int by = y +this.WIDTH/2 +Bullet.WIDTH/2;
+        tf.list.add(new Bullet(bx,by,this.dir,this.tf));
     }
 }

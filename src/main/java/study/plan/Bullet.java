@@ -8,8 +8,8 @@ import java.awt.*;
 public class Bullet {
     private int x,y; //位置
     private Dir dir; //方向
-    private int HIGHT =5; //高 固定 不需要传
-    private int WEIGHT=5; //宽 固定 不需要传
+    public static int HIGHT  = ResouceMrg.bulletL.getHeight(); //高 固定 不需要传
+    public static int WIDTH=ResouceMrg.bulletL.getWidth(); //宽 固定 不需要传
     private static final int  speed = 30; //速度
     private static boolean isLiving = true;
     TrankFrame tf = null;
@@ -28,7 +28,7 @@ public class Bullet {
         }
             Color c = g.getColor();
             g.setColor(Color.red);
-            g.fillOval(x,y,WEIGHT,HIGHT);
+            g.fillOval(x,y,WIDTH,HIGHT);
             g.setColor(c);
             move();
     }
@@ -50,9 +50,9 @@ public class Bullet {
             default:
                  break;
                 }
-            if(this.x<0||this.y<0||this.x>this.tf.WEIGHT||this.y>this.tf.HEIGHT){
-             this.isLiving=false;
-        }
+//            if(this.x<0||this.y<0||this.x>this.tf.GAME_WEIGHT||this.y>this.tf.HEIGHT){
+//             this.isLiving=false;
+//        }
     }
 
 

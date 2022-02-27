@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: study.plan.AppTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.145 s <<< FAILURE! - in study.plan.AppTest
+readImage(study.plan.AppTest)  Time elapsed: 0.141 s  <<< ERROR!
+java.lang.IllegalArgumentException: input == null!
+	at study.plan.AppTest.readImage(AppTest.java:30)
+

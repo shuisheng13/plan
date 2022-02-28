@@ -54,8 +54,12 @@ public class TrankFrame  extends Frame {
         Color c = g.getColor();
         g.setColor(Color.white);
         g.drawString("子弹的数量 "+
-                list.size(),10,60);
+                list.size(),20,60);
+        g.drawString("敌方坦克的数量 "+
+                dTranks.size(),10,100);
         g.setColor(c);
+
+
         myTank.paint(g);
         for (int i = 0; i < list.size(); i++) {
             list.get(i).paint(g);
@@ -63,6 +67,17 @@ public class TrankFrame  extends Frame {
         for (int i = 0; i < dTranks.size(); i++) {
             dTranks.get(i).paint(g);
         }
+
+        /***
+         * 碰撞检测 用于打死敌方坦克
+         */
+        for (int i = 0; i < list.size(); i++) {
+            Bullet b = list.get(i);
+            for (int j = 0; j <dTranks.size()  ; j++) {
+                b.collideWith(dTranks.get(j));
+            }
+        }
+
 //        有内存泄漏问题
 //        for(Bullet b:list){
 //            b.paint(g);

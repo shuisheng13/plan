@@ -11,7 +11,7 @@ public class Bullet {
     public static int HIGHT  = ResouceMrg.bulletL.getHeight(); //高 固定 不需要传
     public static int WIDTH=ResouceMrg.bulletL.getWidth(); //宽 固定 不需要传
     private static final int  speed = 30; //速度
-    private static boolean isLiving = true;
+    private  boolean isLiving = true;
     TrankFrame tf = null;
     public Bullet(int x, int y, Dir dir,TrankFrame tf) {
         this.x = x;
@@ -23,7 +23,7 @@ public class Bullet {
     //画子弹的方法
     public void paint(Graphics g) {
         System.out.println("子弹isLivine "+isLiving);
-        if(!isLiving){
+        if(!this.isLiving){
             tf.list.remove(this);
         }
             Color c = g.getColor();
@@ -50,12 +50,27 @@ public class Bullet {
             default:
                  break;
                 }
-//            if(this.x<0||this.y<0||this.x>this.tf.GAME_WEIGHT||this.y>this.tf.HEIGHT){
-//             this.isLiving=false;
-//        }
+            if(this.x<0||this.y<0||this.x>this.tf.GAME_WEIGHT||this.y>this.tf.GAME_HEIGHT){
+             this.isLiving=false;
+        }
     }
 
+    public void collideWith(Trank trank) {
+        Rectangle r1 = new Rectangle(this.x,this.y,Bullet.WIDTH,Bullet.HIGHT);
+        Rectangle r2 = new Rectangle(trank.getX(),trank.getY(),trank.WIDTH,trank.HEIGHT);
+        if(r1.intersects(r2)){
+            /***
+             * 相交
+             */
+            trank.die();
+            this.die();
+        }
 
+    }
+
+    private void die() {
+        this.isLiving = false;
+    }
     /***
      * 遗留BUG
      * 第一批子弹消失后  后续的子弹打不出去

@@ -10,13 +10,14 @@ import java.util.ArrayList;
 public class Trank {
     private int  x ;
     private int y;
-    private int HEIGHT = ResouceMrg.trankL.getHeight();
-    private int WIDTH = ResouceMrg.trankL.getWidth();
+    public int HEIGHT = ResouceMrg.trankL.getHeight();
+    public int WIDTH = ResouceMrg.trankL.getWidth();
 
     private final static  int speed =30;
     private Dir dir = Dir.UP; //默认向下方向
     private boolean moveing = false;
     private TrankFrame tf = null;
+    private boolean isLiving =true;
 
     public Trank(int x, int y, Dir dir,TrankFrame tf) {
         this.x = x;
@@ -26,6 +27,9 @@ public class Trank {
     }
 
     public void paint(Graphics g) {
+
+        if(!this.isLiving) this.tf.dTranks.remove(this);
+
         switch (dir){
             case LEFT:
                 g.drawImage(ResouceMrg.trankL,x,y,null);
@@ -57,7 +61,23 @@ public class Trank {
         }
     }
 
-        public Dir getDir () {
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public Dir getDir () {
             return dir;
         }
 
@@ -84,5 +104,9 @@ public class Trank {
         int bx = x +this.HEIGHT/2+ Bullet.HIGHT/2;
         int by = y +this.WIDTH/2 +Bullet.WIDTH/2;
         tf.list.add(new Bullet(bx,by,this.dir,this.tf));
+    }
+
+    public void die() {
+        this.isLiving = false;
     }
 }
